@@ -13,16 +13,6 @@ ARG3="$4"
 
 # looking in the direction and subdirecties to find the database file
 DB_FILE=$(find . -type f -name "*.sqlite" | head -n 1)
-# If no database file is found, ask the user to provide one
-if [ -z "$DB_FILE" ]; then
-  echo -e "${RED}❌ No SQLite database file found in the current directory or its subdirectories.${RESET}"
-  echo -e "${YELLOW}Please provide the path to your SQLite database file:${RESET}"
-  read -r DB_FILE
-  if [ ! -f "$DB_FILE" ]; then
-    echo -e "${RED}❌ File '$DB_FILE' not found.${RESET}"
-    exit 1
-  fi
-fi
 
 # Fonction : récupérer colonnes réelles d'une table
 get_actual_columns() {
